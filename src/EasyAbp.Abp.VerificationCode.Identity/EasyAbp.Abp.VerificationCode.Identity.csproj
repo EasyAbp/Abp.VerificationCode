@@ -4,7 +4,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>EasyAbp.Abp.VerificationCode.Identity</RootNamespace>
+        <RootNamespace />
     </PropertyGroup>
 
     <ItemGroup>
