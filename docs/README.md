@@ -8,12 +8,12 @@ An ABP module to generate and verify verification codes.
 
 ## Installation
 
-1. Install the following NuGet packages. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-nuget-packages))
+1. Install the following NuGet packages. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-nuget-packages))
 
     * EasyAbp.Abp.VerificationCode
     * (Optional) EasyAbp.Abp.VerificationCode.Identity
 
-1. Add `DependsOn(typeof(AbpVerificationCodeXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-module-dependencies))
+1. Add `DependsOn(typeof(AbpVerificationCodeXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-module-dependencies))
 
 ## Usage
 
