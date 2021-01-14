@@ -19,13 +19,11 @@ namespace EasyAbp.Abp.VerificationCode.Identity
 
             Configure<IdentityOptions>(options =>
             {
-                options.Tokens.ProviderMap.AddIfNotContains(new KeyValuePair<string, TokenProviderDescriptor>(
-                    TokenOptions.DefaultEmailProvider,
-                    new TokenProviderDescriptor(typeof(AbpVerificationCodeEmailTokenProvider))));
+                options.Tokens.ProviderMap[TokenOptions.DefaultEmailProvider] =
+                    new TokenProviderDescriptor(typeof(AbpVerificationCodeEmailTokenProvider));
 
-                options.Tokens.ProviderMap.AddIfNotContains(new KeyValuePair<string, TokenProviderDescriptor>(
-                    TokenOptions.DefaultPhoneProvider,
-                    new TokenProviderDescriptor(typeof(AbpVerificationCodePhoneTokenProvider))));
+                options.Tokens.ProviderMap[TokenOptions.DefaultPhoneProvider] =
+                    new TokenProviderDescriptor(typeof(AbpVerificationCodePhoneTokenProvider));
                 
                 options.Tokens.ChangeEmailTokenProvider = TokenOptions.DefaultEmailProvider;
                 options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
