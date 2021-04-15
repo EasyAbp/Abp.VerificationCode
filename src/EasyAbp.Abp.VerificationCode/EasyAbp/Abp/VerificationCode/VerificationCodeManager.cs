@@ -41,10 +41,15 @@ namespace EasyAbp.Abp.VerificationCode
             {
                 return false;
             }
+            
+            var result = IsInputCodeCorrect(verificationCode, cacheItem.Code, configuration);
 
-            await _cache.RemoveAsync(codeCacheKey);
+            if (result)
+            {
+                await _cache.RemoveAsync(codeCacheKey);
+            }
 
-            return IsInputCodeCorrect(verificationCode, cacheItem.Code, configuration);
+            return result;
         }
 
         protected virtual bool IsInputCodeCorrect(string inputCode, string correctCode,
