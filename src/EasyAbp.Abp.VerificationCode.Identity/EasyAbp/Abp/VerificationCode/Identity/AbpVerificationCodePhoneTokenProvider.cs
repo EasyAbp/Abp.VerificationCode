@@ -8,8 +8,10 @@ namespace EasyAbp.Abp.VerificationCode.Identity
 {
     public class AbpVerificationCodePhoneTokenProvider : AbpVerificationCodeTokenProvider
     {
-        public AbpVerificationCodePhoneTokenProvider(IVerificationCodeManager verificationCodeManager)
-            : base(verificationCodeManager)
+        public AbpVerificationCodePhoneTokenProvider(
+            IIdentityVerificationCodeConfigurationProvider configurationProvider,
+            IVerificationCodeManager verificationCodeManager)
+            : base(configurationProvider, verificationCodeManager)
         {
         }
         

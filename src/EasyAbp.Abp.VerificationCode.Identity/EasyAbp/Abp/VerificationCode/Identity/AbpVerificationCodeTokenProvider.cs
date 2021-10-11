@@ -7,11 +7,14 @@ namespace EasyAbp.Abp.VerificationCode.Identity
 {
     public abstract class AbpVerificationCodeTokenProvider : IUserTwoFactorTokenProvider<IdentityUser>
     {
+        private readonly IIdentityVerificationCodeConfigurationProvider _configurationProvider;
         private readonly IVerificationCodeManager _verificationCodeManager;
 
         public AbpVerificationCodeTokenProvider(
+            IIdentityVerificationCodeConfigurationProvider configurationProvider,
             IVerificationCodeManager verificationCodeManager)
         {
+            _configurationProvider = configurationProvider;
             _verificationCodeManager = verificationCodeManager;
         }
         
@@ -33,9 +36,9 @@ namespace EasyAbp.Abp.VerificationCode.Identity
             );
         }
         
-        protected virtual Task<VerificationCodeConfiguration> GetVerificationCodeConfigurationAsync()
+        protected virtual async Task<VerificationCodeConfiguration> GetVerificationCodeConfigurationAsync()
         {
-            return Task.FromResult(new VerificationCodeConfiguration());
+            return await _configurationProvider.GetAsync();
         }
         
         protected virtual Task<TimeSpan> GetLifespanAsync()
