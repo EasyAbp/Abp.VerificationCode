@@ -3,12 +3,12 @@
     <Import Project="..\..\common.props" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <RootNamespace />
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.Identity.Domain" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Identity.AspNetCore" Version="$(AbpVersion)" />
     </ItemGroup>
 
     <ItemGroup>

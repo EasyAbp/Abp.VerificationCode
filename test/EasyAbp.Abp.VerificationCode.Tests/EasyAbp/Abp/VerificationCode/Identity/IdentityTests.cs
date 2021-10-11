@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Shouldly;
 using Volo.Abp.Identity;
 using Xunit;
@@ -17,6 +19,9 @@ namespace EasyAbp.Abp.VerificationCode.Identity
             const string newPhoneNumber = "123456";
 
             var userManager = ServiceProvider.GetRequiredService<IdentityUserManager>();
+            var identityOptions = ServiceProvider.GetRequiredService<IOptions<IdentityOptions>>();
+
+            await identityOptions.SetAsync();
 
             var user = await userManager.GetByIdAsync(UserId);
 
@@ -35,7 +40,10 @@ namespace EasyAbp.Abp.VerificationCode.Identity
             const string newPassword = "1q2w3E*123";
 
             var userManager = ServiceProvider.GetRequiredService<IdentityUserManager>();
+            var identityOptions = ServiceProvider.GetRequiredService<IOptions<IdentityOptions>>();
 
+            await identityOptions.SetAsync();
+            
             var user = await userManager.GetByIdAsync(UserId);
 
             var token = await userManager.GeneratePasswordResetTokenAsync(user);
@@ -53,7 +61,10 @@ namespace EasyAbp.Abp.VerificationCode.Identity
             const string newEmail = "mynewemail@abp.io";
 
             var userManager = ServiceProvider.GetRequiredService<IdentityUserManager>();
+            var identityOptions = ServiceProvider.GetRequiredService<IOptions<IdentityOptions>>();
 
+            await identityOptions.SetAsync();
+            
             var user = await userManager.GetByIdAsync(UserId);
 
             var token = await userManager.GenerateChangeEmailTokenAsync(user, newEmail);
@@ -69,7 +80,10 @@ namespace EasyAbp.Abp.VerificationCode.Identity
         public async Task Should_Confirm_Email()
         {
             var userManager = ServiceProvider.GetRequiredService<IdentityUserManager>();
+            var identityOptions = ServiceProvider.GetRequiredService<IOptions<IdentityOptions>>();
 
+            await identityOptions.SetAsync();
+            
             var user = await userManager.GetByIdAsync(UserId);
 
             var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
