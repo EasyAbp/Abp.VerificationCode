@@ -45,7 +45,7 @@ An ABP module to generate and verify verification codes.
 
 ### Use as UserManager Token Providers
 
-Please install the `EasyAbp.Abp.VerificationCode.Identity` module, it registers the token providers that uses `IVerificationCodeManager`.
+Please install the `EasyAbp.Abp.VerificationCode.Identity` module, it registers the token providers that uses `IVerificationCodeManager` ([see](https://github.com/EasyAbp/Abp.VerificationCode/blob/master/src/EasyAbp.Abp.VerificationCode.Identity/EasyAbp/Abp/VerificationCode/Identity/AbpVerificationCodeIdentityModule.cs)). And you can replace the [DefaultIdentityVerificationCodeConfigurationProvider](https://github.com/EasyAbp/Abp.VerificationCode/blob/master/src/EasyAbp.Abp.VerificationCode.Identity/EasyAbp/Abp/VerificationCode/Identity/DefaultIdentityVerificationCodeConfigurationProvider.cs) to customize the verification code generation rules.
 
 ## Q&A
 
