@@ -33,13 +33,19 @@ namespace EasyAbp.Abp.VerificationCode
         {
             context.Services.AddAlwaysAllowAuthorization();
             
-            var sqliteConnection = CreateDatabaseAndGetConnection();
+            var sqliteConnectionIdentity = CreateDatabaseAndGetConnection();
+            var sqliteConnectionPermissionManagement = CreateDatabaseAndGetConnection2();
 
             Configure<AbpDbContextOptions>(options =>
             {
-                options.Configure(abpDbContextConfigurationContext =>
+                options.Configure<IdentityDbContext>(abpDbContextConfigurationContext =>
                 {
-                    abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnection);
+                    abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnectionIdentity);
+                });
+                
+                options.Configure<PermissionManagementDbContext>(abpDbContextConfigurationContext =>
+                {
+                    abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnectionPermissionManagement);
                 });
             });
         }
@@ -51,6 +57,18 @@ namespace EasyAbp.Abp.VerificationCode
 
             new IdentityDbContext(
                 new DbContextOptionsBuilder<IdentityDbContext>().UseSqlite(connection).Options
+            ).GetService<IRelationalDatabaseCreator>().CreateTables();
+            
+            return connection;
+        }
+        
+        private static SqliteConnection CreateDatabaseAndGetConnection2()
+        {
+            var connection = new SqliteConnection("Data Source=:memory:");
+            connection.Open();
+
+            new PermissionManagementDbContext(
+                new DbContextOptionsBuilder<PermissionManagementDbContext>().UseSqlite(connection).Options
             ).GetService<IRelationalDatabaseCreator>().CreateTables();
             
             return connection;
