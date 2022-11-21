@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
-namespace EasyAbp.Abp.VerificationCode.Identity
+namespace EasyAbp.Abp.VerificationCode
 {
-    public class AbpVerificationCodeEmailTokenProvider : AbpVerificationCodeTokenProvider
+    public class AbpVerificationCodePhoneTokenProvider : AbpVerificationCodeTokenProvider
     {
-        public AbpVerificationCodeEmailTokenProvider(
+        public AbpVerificationCodePhoneTokenProvider(
             IIdentityVerificationCodeConfigurationProvider configurationProvider,
             IVerificationCodeManager verificationCodeManager)
             : base(configurationProvider, verificationCodeManager)
@@ -21,9 +21,9 @@ namespace EasyAbp.Abp.VerificationCode.Identity
                 throw new ArgumentNullException(nameof(manager));
             }
             
-            var email = await manager.GetEmailAsync(user);
+            var phoneNumber = await manager.GetPhoneNumberAsync(user);
             
-            return !string.IsNullOrWhiteSpace(email) && await manager.IsEmailConfirmedAsync(user);
+            return !string.IsNullOrWhiteSpace(phoneNumber) && await manager.IsPhoneNumberConfirmedAsync(user);
         }
 
         protected override async Task<string> GetCacheKeyAsync(string purpose, UserManager<IdentityUser> manager,
@@ -34,9 +34,9 @@ namespace EasyAbp.Abp.VerificationCode.Identity
                 throw new ArgumentNullException(nameof(manager));
             }
 
-            var email = await manager.GetEmailAsync(user);
+            var phoneNumber = await manager.GetPhoneNumberAsync(user);
 
-            return "Email:" + purpose + ":" + email;
+            return "PhoneNumber:" + purpose + ":" + phoneNumber;
         }
     }
 }

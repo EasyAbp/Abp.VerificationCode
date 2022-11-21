@@ -2,7 +2,7 @@
 using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.Modularity;
 
-namespace EasyAbp.Abp.VerificationCode.Identity
+namespace EasyAbp.Abp.VerificationCode
 {
     [DependsOn(
         typeof(AbpIdentityAspNetCoreModule),

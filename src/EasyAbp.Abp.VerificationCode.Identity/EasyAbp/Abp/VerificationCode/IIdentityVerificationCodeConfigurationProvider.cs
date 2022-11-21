@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EasyAbp.Abp.VerificationCode.Identity
+namespace EasyAbp.Abp.VerificationCode
 {
     public interface IIdentityVerificationCodeConfigurationProvider
     {
