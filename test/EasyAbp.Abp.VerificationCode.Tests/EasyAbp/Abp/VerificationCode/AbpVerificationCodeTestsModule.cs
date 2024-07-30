@@ -52,7 +52,7 @@ namespace EasyAbp.Abp.VerificationCode
         
         private static SqliteConnection CreateDatabaseAndGetConnection()
         {
-            var connection = new SqliteConnection("Data Source=:memory:");
+            var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
             connection.Open();
 
             new IdentityDbContext(
@@ -64,7 +64,7 @@ namespace EasyAbp.Abp.VerificationCode
         
         private static SqliteConnection CreateDatabaseAndGetConnection2()
         {
-            var connection = new SqliteConnection("Data Source=:memory:");
+            var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
             connection.Open();
 
             new PermissionManagementDbContext(
